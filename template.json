@@ -1,0 +1,153 @@
+{
+  "version": "2",
+  "templates": [
+    {
+      "categories": [
+        "Monitoring"
+      ],
+      "description": "Chevereto is a powerful and fast image hosting script that allows you to create your very own full featured image hosting website in just minutes. Please note that this offers only the free Chevereto version..",
+      "image": "nmtan/chevereto:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/Chevereto.png",
+      "platform": "linux",
+      "ports": [
+        "80/tcp"
+      ],
+      "title": "Chevereto",
+      "type": 1,
+      "volumes": [
+        {
+          "container": "/var/www/html/images"
+        }
+      ],
+      "env": [
+        {
+          "label": "PUID",
+          "name": "PUID",
+          "set": ""
+        },
+        {
+          "label": "PGID",
+          "name": "PGID",
+          "set": ""
+        },
+        {
+          "label": "CHEVERETO_DB_HOST",
+          "name": "CHEVERETO_DB_HOST",
+          "set": ""
+        },
+        {
+          "label": "CHEVERETO_DB_USERNAME",
+          "name": "CHEVERETO_DB_USERNAME",
+          "set": ""
+        },
+        {
+          "label": "CHEVERETO_DB_PASSWORD",
+          "name": "CHEVERETO_DB_PASSWORD",
+          "set": ""
+        },
+        {
+          "label": "CHEVERETO_DB_NAME",
+          "name": "CHEVERETO_DB_NAME",
+          "set": ""
+        },
+        {
+          "label": "CHEVERETO_DB_PREFIX",
+          "name": "CHEVERETO_DB_PREFIX",
+          "set": ""
+        }
+      ],
+      "command": "--port 80 --database /data/database.db --scope /srv",
+      "note": "Deploys a Wordpress instance connected to a MySQL database.",
+      "privileged": true,
+      "name": "func",
+      "repository": {
+        "stackfile": "stacks/datadog-agent/docker-stack.yml",
+        "url": "https://github.com/portainer/templates"
+      },
+      "category": [
+        "Other",
+        "Tools",
+        "Photo"
+      ]
+    },
+    {
+      "categories": [
+        "Messenger"
+      ],
+      "description": "ZNC is an IRC network bouncer or BNC. It can detach the client from the actual IRC server, and also from selected channels. Multiple clients from different locations can connect to a single ZNC account simultaneously and therefore appear under the same nickname on IRC.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "100",
+          "label": "PGID",
+          "name": "PGID"
+        }
+      ],
+      "image": "linuxserver/znc:latest",
+      "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/znc-icon.png",
+      "name": "znc",
+      "platform": "linux",
+      "ports": [
+        "6501:6501/tcp"
+      ],
+      "restart_policy": "unless-stopped",
+      "title": "ZNC",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Files/AppData/Config/ZNC",
+          "container": "/config"
+        }
+      ],
+      "note": "It is recommended to manually update your containers but we're including this for those of you that don't care",
+      "repository": {
+        "stackfile": "Template/Stack/pritunl.yml",
+        "url": "https://github.com/SelfhostedPro/selfhosted_templates"
+      },
+      "namme": "deluge",
+      "network": "host"
+    },
+    {
+      "type": 4,
+      "title": "CockroachDB",
+      "description": "CockroachDB cluster",
+      "categories": [
+        "Monitoring"
+      ],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
+      "image": "ortussolutions/contentbox:latest",
+      "ports": [
+        "8080/tcp",
+        "8443/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/data/contentbox/db"
+        },
+        {
+          "container": "/app/includes/shared/media"
+        }
+      ],
+      "env": [
+        {
+          "name": "API_KEY",
+          "label": "Datadog API key"
+        }
+      ],
+      "command": "--port 80 --database /data/database.db --root /srv",
+      "note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+      "privileged": true,
+      "name": "func",
+      "repository": {
+        "url": "https://github.com/portainer/templates",
+        "stackfile": "stacks/datadog-agent/docker-stack.yml"
+      },
+      "stackfile": "https://raw.githubusercontent.com/portainer/templates/master/stacks/cockroachdb/edge/docker-stack.yml"
+    }
+  ]
+}
