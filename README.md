@@ -6,5 +6,6 @@ Combine the following templates into one unified since Portainer only accepts on
 2. https://github.com/SelfhostedPro/selfhosted_templates
 
 Make sure you installed Portainer 2.0 CE
-1. Click in Settings
+1. Click in Settings.
 2. Paste the following URL into the App Templates URL: https://raw.githubusercontent.com/ramonck/P2ATC/master/template.json
+3. Refresh App Templates and make sure to enable "Show container templates".
